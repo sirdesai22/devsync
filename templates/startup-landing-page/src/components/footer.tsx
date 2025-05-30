@@ -30,9 +30,9 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer id="contact" className="border-t bg-background">
-      <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+    <footer id="contact" className="border-t bg-background ">
+      <div className="py-12 md:py-16 px-4">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 max-w-7xl mx-auto">
           {/* Logo and description */}
           <div className="col-span-2">
             <Link href="/" className="flex items-center space-x-2 mb-4">

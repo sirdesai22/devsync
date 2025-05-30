@@ -6,7 +6,7 @@ export function HeroSection() {
   return (
     <section className="relative overflow-hidden py-20 sm:py-32">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
+      <div className={`absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-secondary/5`} />
 
       <div className="container relative">
         <div className="mx-auto max-w-4xl text-center">
@@ -51,7 +51,7 @@ export function HeroSection() {
                 className="rounded-lg"
                 priority
               />
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-background/20 to-transparent" />
+              <div className="absolute inset-0 rounded-xl bg-linear-to-t from-background/20 to-transparent" />
             </div>
           </div>
         </div>
