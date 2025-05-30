@@ -10,7 +10,6 @@ import { FeaturesSection } from "@/components/features-section"
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background">
-      <span className="text-primary text-xl font-bold">Test Primary</span>
       <Header />
       <main className="flex flex-col items-center justify-center">
         <HeroSection />
