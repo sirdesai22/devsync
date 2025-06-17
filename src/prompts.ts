@@ -1,22 +1,36 @@
 import inquirer from "inquirer";
 
 export async function getUserChoices() {
-  const stackChoices = ["Next.js", "React", "Firebase", "Supabase", "Tailwind"];
-  const projectTypes = ["SaaS", "Startup Landing Page", "Portfolio", "Blog CMS"];
+  const stackChoices = ["Nextjs", "React"];
+  // const databaseChoices = ["None", "Supabase", "Firebase", "Postgres", "Neon"];
+  const authChoices = ["Better-Auth", "Clerk", "Supabase-Auth", "Firebase-Auth"];
+  // const projectTypes = ["SaaS", "Portfolio", "Blog CMS"];
 
   const answers = await inquirer.prompt([
     {
-      type: "checkbox",
+      type: "list",
       name: "techStack",
       message: "Select your tech stack:",
       choices: stackChoices,
     },
+    // {
+    //   type: "list",
+    //   name: "database",
+    //   message: "Select your database:",
+    //   choices: databaseChoices,
+    // },
     {
       type: "list",
-      name: "projectType",
-      message: "Select project type:",
-      choices: projectTypes,
+      name: "auth",
+      message: "Select your authentication provider:",
+      choices: authChoices,
     },
+    // {
+    //   type: "list",
+    //   name: "projectType",
+    //   message: "Select project type:",
+    //   choices: projectTypes,
+    // },
     {
       type: "input",
       name: "projectName",

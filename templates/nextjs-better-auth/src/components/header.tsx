@@ -1,13 +1,26 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
 import { Menu, X, Zap } from "lucide-react"
+import { createAuthClient } from "better-auth/client";
+
+const authClient =  createAuthClient()
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [session, setSession] = useState<any>(null);
+  useEffect(() => { 
+    const checkAuth = async () => {
+      const session = await authClient.getSession();
+      if (session) {
+        setSession(session);
+      }
+    };
+    checkAuth();
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -38,10 +51,22 @@ export function Header() {
         <div className="flex items-center space-x-4">
           <ModeToggle />
           <div className="hidden md:flex items-center space-x-2">
-            <Button variant="ghost" size="sm">
-              Sign In
-            </Button>
-            <Button size="sm">Get Started</Button>
+            {session ? (
+              <Link href="/dashboard">
+                <Button variant="ghost" size="sm">
+                  Dashboard
+                </Button>
+              </Link>
+            ) : (
+              <>
+              <Link href="/signin">
+                <Button variant="ghost" size="sm">
+                  Sign In
+                </Button>
+              </Link>
+              <Button size="sm">Get Started</Button>
+              </>
+          )}
           </div>
 
           {/* Mobile Menu Button */}
