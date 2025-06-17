@@ -2,8 +2,8 @@ import fs from 'fs-extra';
 import path from 'path';
 import { logInfo } from './utils/logger';
 
-export async function scaffoldProject(type: string, stack: string[], projectName: string) {
-  const templatePath = path.join(__dirname, '..', 'templates', `${type.toLowerCase().replace(/\s/g, '-')}-${stack[0].toLowerCase()}`);
+export async function scaffoldProject(type: string, stack: string, auth: string, projectName: string) {
+  const templatePath = path.join(__dirname, '..', 'templates', `${stack.toLowerCase()}-${auth.toLowerCase()}`);
   const targetPath = path.resolve(process.cwd(), projectName);
 
   if (!fs.existsSync(templatePath)) {
