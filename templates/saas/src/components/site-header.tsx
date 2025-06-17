@@ -14,6 +14,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { useSidebar } from "@/components/ui/sidebar"
+import { ModeToggle } from "./mode-toggle"
 
 export function SiteHeader() {
   const { toggleSidebar } = useSidebar()
@@ -29,21 +30,20 @@ export function SiteHeader() {
         >
           <SidebarIcon />
         </Button>
-        <Separator orientation="vertical" className="mr-2 h-4" />
         <Breadcrumb className="hidden sm:block">
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink href="#">
-                Building Your Application
+                Dashboard
               </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>Data Fetching</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        <SearchForm className="w-full sm:ml-auto sm:w-auto" />
+       
+        <div className="flex items-center space-x-4 sm:ml-auto">
+          <ModeToggle />
+          <SearchForm className="w-full sm:w-auto" />
+        </div>
       </div>
     </header>
   )

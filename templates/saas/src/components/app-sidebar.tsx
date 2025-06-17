@@ -1,12 +1,11 @@
 "use client"
-
-import * as React from "react"
 import {
   BookOpen,
   Bot,
   Command,
   Frame,
   LifeBuoy,
+  LogOut,
   Map,
   PieChart,
   Send,
@@ -27,6 +26,12 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { createAuthClient } from "better-auth/client"
+import { useEffect, useState } from "react"
+import { Button } from "./ui/button"
+import { useRouter } from "next/navigation"
+
+const authClient =  createAuthClient()
 
 const data = {
   user: {
@@ -153,6 +158,22 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const [session, setSession] = useState<any>(null);
+  const router = useRouter();
+  useEffect(() => {
+    const checkAuth = async () => {
+      const session = await authClient.getSession();
+      if(!session.data?.user) {
+        router.push("/signin");
+      } else {
+        setSession(session);
+      }
+    }
+    checkAuth();
+  }, []);
+  if(!session) {
+    return <div>Loading...</div>;
+  }
   return (
     <Sidebar
       className="top-(--header-height) h-[calc(100svh-var(--header-height))]!"
@@ -167,8 +188,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <Command className="size-4" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">Acme Inc</span>
-                  <span className="truncate text-xs">Enterprise</span>
+                  <span className="truncate font-medium">DevSync</span>
+                  <span className="truncate text-xs">AI Agent</span>
                 </div>
               </a>
             </SidebarMenuButton>
@@ -181,7 +202,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={session?.data?.user} />
       </SidebarFooter>
     </Sidebar>
   )
