@@ -1,5 +1,5 @@
 {
-  "name": "devsync",
+  "name": "stack-genz",
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
@@ -8,12 +8,12 @@
     "start": "node dist/index.js"
   },
   "bin": {
-    "devsync": "./dist/index.js"
+    "stack-gen": "./dist/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Prathamesh Sirdesai",
   "license": "ISC",
-  "description": "",
+  "description": "A CLI tool to generate a stack of files for a new project",
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^11.1.0",
@@ -26,5 +26,8 @@
     "@types/fs-extra": "^11.0.4",
     "@types/inquirer": "^8.2.6",
     "@types/node": "^20.11.24"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
